@@ -70,7 +70,7 @@ services:
             - 443:443
         restart: always
         volumes:
-            - confnginx:/etc/nginx/conf.d
+                #- confnginx:/etc/nginx/conf.d
             - lognginx:/etc/nginx/log
         container_name: nginx
         hostname: nginx
