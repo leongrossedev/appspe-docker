@@ -1,0 +1,78 @@
+version: "3.8"
+
+services:
+    apis-ref:
+        build:
+            context: ./apis-ref
+            dockerfile: Dockerfile
+        ports:
+            - "8082:8082"
+        restart: always
+        container_name: apis-ref
+        hostname: apis-ref
+
+    apis-ad:
+        build:
+            context: ./apis-ad
+            dockerfile: Dockerfile
+        ports:
+            - "8083:8083"
+        restart: always
+        container_name: apis-ad
+        hostname: apis-ad
+
+    # apis-lol:
+    #     build:
+    #         context: ./apis-lol
+    #         dockerfile: Dockerfile
+    #     ports:
+    #         - "8085:8085"
+    #     container_name: apis-lol
+    #     restart: always
+    #     hostname: apis-lol
+
+    apis-google:
+        build:
+            context: ./apis-google
+            dockerfile: Dockerfile
+        ports:
+            - "8084:8084"
+        restart: always
+        container_name: apis-google
+        hostname: apis-google
+
+    apis-pca:
+        build:
+            context: ./apis-pca
+            dockerfile: Dockerfile
+        ports:
+            - "8086:8086"
+        restart: always
+        container_name: apis-pca
+        hostname: apis-pca
+
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        ports:
+            - 80:80
+            - 443:443
+        restart: always
+        volumes:
+            - confnginx:/etc/nginx/conf.d
+            - lognginx:/etc/nginx/log
+        container_name: nginx
+        hostname: nginx
+
+volumes:
+    lognginx:
+        driver_opts:
+            type: none
+            device: /var/log/nginx
+            o: bind
+        confnginx:
+        driver_opts:
+            type: none
+            device: /etc/nginx/conf.d
+            o: bind
