@@ -8,6 +8,8 @@ services:
         ports:
             - "8082:8082"
         restart: always
+        volumes:
+            - logapps:/var/log/apps
         container_name: apis-ref
         hostname: apis-ref
 
@@ -17,6 +19,8 @@ services:
             dockerfile: Dockerfile
         ports:
             - "8083:8083"
+        volumes:
+            - logapps:/var/log/apps
         restart: always
         container_name: apis-ad
         hostname: apis-ad
@@ -27,6 +31,8 @@ services:
     #         dockerfile: Dockerfile
     #     ports:
     #         - "8085:8085"
+    #    volumes:
+    #         - logapps:/var/log/apps
     #     container_name: apis-lol
     #     restart: always
     #     hostname: apis-lol
@@ -37,6 +43,8 @@ services:
             dockerfile: Dockerfile
         ports:
             - "8084:8084"
+        volumes:
+            - logapps:/var/log/apps
         restart: always
         container_name: apis-google
         hostname: apis-google
@@ -48,6 +56,8 @@ services:
         ports:
             - "8086:8086"
         restart: always
+        volumes:
+            - logapps:/var/log/apps
         container_name: apis-pca
         hostname: apis-pca
 
@@ -71,8 +81,14 @@ volumes:
             type: none
             device: /var/log/nginx
             o: bind
-        confnginx:
+    confnginx:
         driver_opts:
             type: none
             device: /etc/nginx/conf.d
             o: bind
+    logapps:
+        driver_opts:
+            type: none
+            device: /var/log/apps/
+            o: bind
+        
