@@ -31,7 +31,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - "8085:8085"
-       volumes:
+        volumes:
             - logapps:/var/log/apps
         container_name: apis-lol
         restart: always
