@@ -25,17 +25,17 @@ services:
         container_name: apis-ad
         hostname: apis-ad
 
-    # apis-lol:
-    #     build:
-    #         context: ./apis-lol
-    #         dockerfile: Dockerfile
-    #     ports:
-    #         - "8085:8085"
-    #    volumes:
-    #         - logapps:/var/log/apps
-    #     container_name: apis-lol
-    #     restart: always
-    #     hostname: apis-lol
+    apis-lol:
+        build:
+            context: ./apis-lol
+            dockerfile: Dockerfile
+        ports:
+            - "8085:8085"
+       volumes:
+            - logapps:/var/log/apps
+        container_name: apis-lol
+        restart: always
+        hostname: apis-lol
 
     apis-google:
         build:
