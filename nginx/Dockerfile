@@ -9,6 +9,7 @@ WORKDIR /etc/nginx/
 
 # Config
 COPY ./resources/conf.d/apps-oid.conf ./conf.d/
+COPY ./resources/conf.d/apps.conf ./conf.d/
 COPY ./resources/conf.d/default.conf ./conf.d/default.conf
 COPY ./resources/nginx.conf ./nginx.conf
 COPY ./resources/ssl/xxx.leon-grosse.fr.cer ./ssl/

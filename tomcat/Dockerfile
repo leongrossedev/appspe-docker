@@ -13,6 +13,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Déploiement des applications
 COPY ./resources/webapps/apca.war ./webapps/apca.war
+COPY ./resources/webapps/acau.war ./webapps/acau.war
+COPY ./resources/webapps/acdc.war ./webapps/acdc.war
+COPY ./resources/webapps/arlg.war ./webapps/arlg.war
+COPY ./resources/webapps/asgr.war ./webapps/asgr.war
+COPY ./resources/webapps/agpe.war ./webapps/agpe.war
 
 # Ports exposés
 EXPOSE 8080/tcp

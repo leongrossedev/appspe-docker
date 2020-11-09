@@ -70,21 +70,32 @@ services:
             - 443:443
         restart: always
         volumes:
-                #- confnginx:/etc/nginx/conf.d
             - lognginx:/etc/nginx/log
         container_name: nginx
         hostname: nginx
+
+    tomcat:
+        build:
+            context: ./tomcat
+            dockerfile: Dockerfile
+        ports:
+            - "40080:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps:/usr/local/tomcat/logs
+            - /opt/appspe-docker/tomcat/resources/webapps/host-manager/META-INF/context.xml:/usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+            - /opt/appspe-docker/tomcat/resources/webapps/manager/META-INF/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+            - /opt/appspe-docker/tomcat/resources/conf/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+            - /opt/appspe-docker/tomcat/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat
+        hostname: tomcat
 
 volumes:
     lognginx:
         driver_opts:
             type: none
             device: /var/log/nginx
-            o: bind
-    confnginx:
-        driver_opts:
-            type: none
-            device: /etc/nginx/conf.d
             o: bind
     logapps:
         driver_opts:
