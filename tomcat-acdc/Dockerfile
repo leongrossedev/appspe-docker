@@ -24,4 +24,5 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 EXPOSE 8080/tcp
 
 # Démarrer tomcat
+ENV JAVA_OPTS "${JAVA_OPTS} -Dfile.encoding=UTF8"
 CMD ["catalina.sh", "run", "1>>/usr/local/tomcat/logs/catalina.out", "2>>/usr/local/tomcat/logs/catalina.out"]

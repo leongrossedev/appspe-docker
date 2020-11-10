@@ -85,6 +85,8 @@ services:
         volumes:
             - logapps-arlg:/usr/local/tomcat/logs
             - webapps-arlg:/usr/local/tomcat/webapps
+            - ./tomcat-arlg/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-arlg/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-arlg/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-arlg
         hostname: tomcat-arlg
@@ -100,6 +102,8 @@ services:
         volumes:
             - logapps-asgr:/usr/local/tomcat/logs
             - webapps-asgr:/usr/local/tomcat/webapps
+            - ./tomcat-asgr/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-asgr/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-asgr/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-asgr
         hostname: tomcat-asgr
@@ -115,6 +119,8 @@ services:
         volumes:
             - logapps-acau:/usr/local/tomcat/logs
             - webapps-acau:/usr/local/tomcat/webapps
+            - ./tomcat-acau/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-acau/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-acau/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-acau
         hostname: tomcat-acau
@@ -130,6 +136,8 @@ services:
         volumes:
             - logapps-acdc:/usr/local/tomcat/logs
             - webapps-acdc:/usr/local/tomcat/webapps
+            - ./tomcat-acdc/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-acdc/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-acdc/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-acdc
         hostname: tomcat-acdc
@@ -145,6 +153,8 @@ services:
         volumes:
             - logapps-agpe:/usr/local/tomcat/logs
             - webapps-agpe:/usr/local/tomcat/webapps
+            - ./tomcat-agpe/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-agpe/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-agpe/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-agpe
         hostname: tomcat-agpe
@@ -160,11 +170,18 @@ services:
         volumes:
             - logapps-apca:/usr/local/tomcat/logs
             - webapps-apca:/usr/local/tomcat/webapps
+            - ./tomcat-apca/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-apca/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
             - ./tomcat-apca/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
         container_name: tomcat-apca
         hostname: tomcat-apca
 
 volumes:
+    logapps:
+        driver_opts:
+            type: none
+            device: /var/log/apps/
+            o: bind
     lognginx:
         driver_opts:
             type: none
