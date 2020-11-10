@@ -74,32 +74,159 @@ services:
         container_name: nginx
         hostname: nginx
 
-    tomcat:
+    tomcat-arlg:
         build:
-            context: ./tomcat
+            context: ./tomcat-arlg
             dockerfile: Dockerfile
         ports:
-            - "40080:8080"
+            - "40081:8080"
         restart: always
         user: root
         volumes:
-            - logapps:/usr/local/tomcat/logs
-            - /opt/appspe-docker/tomcat/resources/webapps/host-manager/META-INF/context.xml:/usr/local/tomcat/webapps/host-manager/META-INF/context.xml
-            - /opt/appspe-docker/tomcat/resources/webapps/manager/META-INF/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
-            - /opt/appspe-docker/tomcat/resources/conf/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-            - /opt/appspe-docker/tomcat/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
-        container_name: tomcat
-        hostname: tomcat
+            - logapps-arlg:/usr/local/tomcat/logs
+            - webapps-arlg:/usr/local/tomcat/webapps
+            - ./tomcat-arlg/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-arlg
+        hostname: tomcat-arlg
+
+    tomcat-asgr:
+        build:
+            context: ./tomcat-asgr
+            dockerfile: Dockerfile
+        ports:
+            - "40082:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-asgr:/usr/local/tomcat/logs
+            - webapps-asgr:/usr/local/tomcat/webapps
+            - ./tomcat-asgr/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-asgr
+        hostname: tomcat-asgr
+
+    tomcat-acau:
+        build:
+            context: ./tomcat-acau
+            dockerfile: Dockerfile
+        ports:
+            - "40083:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-acau:/usr/local/tomcat/logs
+            - webapps-acau:/usr/local/tomcat/webapps
+            - ./tomcat-acau/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-acau
+        hostname: tomcat-acau
+
+    tomcat-acdc:
+        build:
+            context: ./tomcat-acdc
+            dockerfile: Dockerfile
+        ports:
+            - "40084:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-acdc:/usr/local/tomcat/logs
+            - webapps-acdc:/usr/local/tomcat/webapps
+            - ./tomcat-acdc/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-acdc
+        hostname: tomcat-acdc
+
+    tomcat-agpe:
+        build:
+            context: ./tomcat-agpe
+            dockerfile: Dockerfile
+        ports:
+            - "40085:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-agpe:/usr/local/tomcat/logs
+            - webapps-agpe:/usr/local/tomcat/webapps
+            - ./tomcat-agpe/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-agpe
+        hostname: tomcat-agpe
+
+    tomcat-apca:
+        build:
+            context: ./tomcat-apca
+            dockerfile: Dockerfile
+        ports:
+            - "40086:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-apca:/usr/local/tomcat/logs
+            - webapps-apca:/usr/local/tomcat/webapps
+            - ./tomcat-apca/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-apca
+        hostname: tomcat-apca
 
 volumes:
     lognginx:
         driver_opts:
             type: none
-            device: /var/log/nginx
+            device: /var/log/nginx/
             o: bind
-    logapps:
+    logapps-arlg:
         driver_opts:
             type: none
-            device: /var/log/apps/
+            device: /var/log/apps/arlg/
             o: bind
-        
+    webapps-arlg:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/arlg/
+            o: bind
+    logapps-apca:
+        driver_opts:
+            type: none
+            device: /var/log/apps/apca/
+            o: bind
+    webapps-apca:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/apca/
+            o: bind
+    logapps-asgr:
+        driver_opts:
+            type: none
+            device: /var/log/apps/asgr/
+            o: bind
+    webapps-asgr:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/asgr/
+            o: bind
+    logapps-acau:
+        driver_opts:
+            type: none
+            device: /var/log/apps/acau/
+            o: bind
+    webapps-acau:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/acau/
+            o: bind
+    logapps-acdc:
+        driver_opts:
+            type: none
+            device: /var/log/apps/acdc/
+            o: bind
+    webapps-acdc:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/acdc/
+            o: bind
+    logapps-agpe:
+        driver_opts:
+            type: none
+            device: /var/log/apps/agpe/
+            o: bind
+    webapps-agpe:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/agpe/
+            o: bind
