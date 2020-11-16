@@ -9,7 +9,14 @@ WORKDIR /etc/nginx/
 
 # Config
 COPY ./resources/conf.d/apps-oid.conf ./conf.d/
-COPY ./resources/conf.d/apps.conf ./conf.d/
+COPY ./resources/conf.d/appsapca.conf ./conf.d/
+COPY ./resources/conf.d/appsagpe.conf ./conf.d/
+COPY ./resources/conf.d/appsasgr.conf ./conf.d/
+COPY ./resources/conf.d/appsacau.conf ./conf.d/
+COPY ./resources/conf.d/appsacdc.conf ./conf.d/
+COPY ./resources/conf.d/appsarlg.conf ./conf.d/
+COPY ./resources/conf.d/appssirh.conf ./conf.d/
+COPY ./resources/conf.d/prisme.conf ./conf.d/
 COPY ./resources/conf.d/default.conf ./conf.d/default.conf
 COPY ./resources/nginx.conf ./nginx.conf
 COPY ./resources/ssl/xxx.leon-grosse.fr.cer ./ssl/

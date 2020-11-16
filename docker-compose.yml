@@ -61,6 +61,18 @@ services:
         container_name: apis-pca
         hostname: apis-pca
 
+    apis-sirh:
+        build:
+            context: ./apis-sirh
+            dockerfile: Dockerfile
+        ports:
+            - "8089:8089"
+        restart: always
+        volumes:
+            - logapps:/var/log/apps
+        container_name: apis-sirh
+        hostname: apis-sirh
+
     nginx:
         build:
             context: ./nginx
@@ -176,6 +188,23 @@ services:
         container_name: tomcat-apca
         hostname: tomcat-apca
 
+    tomcat-asirh:
+        build:
+            context: ./tomcat-asirh
+            dockerfile: Dockerfile
+        ports:
+            - "40087:8080"
+        restart: always
+        user: root
+        volumes:
+            - logapps-asirh:/usr/local/tomcat/logs
+            - webapps-asirh:/usr/local/tomcat/webapps
+            - ./tomcat-asirh/resources/conf/web.xml:/usr/local/tomcat/conf/web.xml
+            - ./tomcat-asirh/resources/conf/server.xml:/usr/local/tomcat/conf/server.xml
+            - ./tomcat-asirh/resources/conf/logging.properties:/usr/local/tomcat/conf/logging.properties
+        container_name: tomcat-asirh
+        hostname: tomcat-asirh
+
 volumes:
     logapps:
         driver_opts:
@@ -246,4 +275,14 @@ volumes:
         driver_opts:
             type: none
             device: /opt/apps/webapps/agpe/
+            o: bind
+    logapps-asirh:
+        driver_opts:
+            type: none
+            device: /var/log/apps/asirh/
+            o: bind
+    webapps-asirh:
+        driver_opts:
+            type: none
+            device: /opt/apps/webapps/asirh/
             o: bind
