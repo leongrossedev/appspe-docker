@@ -9,6 +9,7 @@ WORKDIR /etc/nginx/
 
 # Config
 COPY ./resources/conf.d/apps-oid.conf ./conf.d/
+COPY ./resources/conf.d/apps.conf ./conf.d/
 COPY ./resources/conf.d/appsapca.conf ./conf.d/
 COPY ./resources/conf.d/appsagpe.conf ./conf.d/
 COPY ./resources/conf.d/appsasgr.conf ./conf.d/

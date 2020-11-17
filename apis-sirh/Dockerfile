@@ -15,7 +15,7 @@ ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Ports exposés
-EXPOSE 8083/tcp
+EXPOSE 8089/tcp
 
 # Lancer l'application
 CMD ["/usr/bin/java", "-jar", "asirh-api-rest.jar", "--debug"]

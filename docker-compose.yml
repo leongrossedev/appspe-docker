@@ -73,6 +73,18 @@ services:
         container_name: apis-sirh
         hostname: apis-sirh
 
+    apis-abim:
+        build:
+            context: ./apis-abim
+            dockerfile: Dockerfile
+        ports:
+            - "8087:8087"
+        restart: always
+        volumes:
+            - logapps:/var/log/apps
+        container_name: apis-abim
+        hostname: apis-abim
+
     nginx:
         build:
             context: ./nginx
